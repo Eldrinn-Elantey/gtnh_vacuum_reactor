@@ -3,8 +3,6 @@ local component = require("component")
 local sides = require("sides")
 local event = require("event")
 local term = require("term")
-local fs = component.proxy(computer.tmpAddress())
-
 local gpu = component.gpu
 
 local REACTOR_COMPONENT_UNKNOWN = 0
@@ -139,20 +137,8 @@ local function set_log_history_size(new_size)
     end
 end
 
-local function getRealTime()
-    local name = "time"
-    local f = fs.open(name, "w")
-    fs.close(f)
-
-    local time = math.floor(fs.lastModified(name) / 1000) + (4 * 3600)
-    fs.remove(name)
-
-    return os.date("%Y-%m-%d %H:%M:%S", time)
-end
-
 local function log(log_type, message)
-    -- TODO: Maybe real time. I don't like the solution with creating a temporary file and reading its time.
-    local full_message = getRealTime() .. " - " .. log_type .. ": " .. message
+    local full_message = os.date("%Y-%m-%d %H:%M:%S", computer.realTime()) .. " - " .. log_type .. ": " .. message
     if #LOGS >= LOGS_HISTORY_SIZE then
         pop_last_log_message()
     end
