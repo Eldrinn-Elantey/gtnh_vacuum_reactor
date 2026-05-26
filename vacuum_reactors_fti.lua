@@ -25,6 +25,20 @@ local REACTOR_COMPONENT_CLASSIFICATION = {
     ["gregtech:gt.360k_Space_Coolantcell"] = REACTOR_COMPONENT_COOLANT_CELL,
     ["gregtech:gt.540k_Space_Coolantcell"] = REACTOR_COMPONENT_COOLANT_CELL,
     ["gregtech:gt.1080k_Space_Coolantcell"] = REACTOR_COMPONENT_COOLANT_CELL,
+    -- Rods for gtnh 2.8.0+
+    ["gregtech:gt.rodUranium"] = REACTOR_COMPONENT_FUEL_ROD,
+    ["gregtech:gt.rodUranium2"] = REACTOR_COMPONENT_FUEL_ROD,
+    ["gregtech:gt.rodUranium4"] = REACTOR_COMPONENT_FUEL_ROD,
+    ["gregtech:gt.rodThorium"] = REACTOR_COMPONENT_FUEL_ROD,
+    ["gregtech:gt.rodThorium2"] = REACTOR_COMPONENT_FUEL_ROD,
+    ["gregtech:gt.rodThorium4"] = REACTOR_COMPONENT_FUEL_ROD,
+    ["gregtech:gt.depletedRodUranium"] = REACTOR_COMPONENT_FUEL_ROD,
+    ["gregtech:gt.depletedRodUranium2"] = REACTOR_COMPONENT_FUEL_ROD,
+    ["gregtech:gt.depletedRodUranium4"] = REACTOR_COMPONENT_FUEL_ROD,
+    ["gregtech:gt.depletedRodThorium"] = REACTOR_COMPONENT_FUEL_ROD,
+    ["gregtech:gt.depletedRodThorium2"] = REACTOR_COMPONENT_FUEL_ROD,
+    ["gregtech:gt.depletedRodThorium4"] = REACTOR_COMPONENT_FUEL_ROD,
+    --Rods for gtnh 2.7.4-
     ["gregtech:gt.reactorUraniumSimple"] = REACTOR_COMPONENT_FUEL_ROD,
     ["gregtech:gt.reactorUraniumDual"] = REACTOR_COMPONENT_FUEL_ROD,
     ["gregtech:gt.reactorUraniumQuad"] = REACTOR_COMPONENT_FUEL_ROD,
@@ -40,6 +54,14 @@ local REACTOR_COMPONENT_CLASSIFICATION = {
 }
 
 local REACTOR_FUEL_ROD_DEPLETED = {
+    -- Rods for gtnh 2.8.0+
+    ["gregtech:gt.depletedRodUranium"] = true,
+    ["gregtech:gt.depletedRodUranium2"] = true,
+    ["gregtech:gt.depletedRodUranium4"] = true,
+    ["gregtech:gt.depletedRodThorium"] = true,
+    ["gregtech:gt.depletedRodThorium2"] = true,
+    ["gregtech:gt.depletedRodThorium4"] = true,
+    --Rods for gtnh 2.7.4-
     ["IC2:reactorUraniumSimpledepleted"] = true,
     ["IC2:reactorUraniumDualdepleted"] = true,
     ["IC2:reactorUraniumQuaddepleted"] = true,
@@ -121,10 +143,10 @@ local function getRealTime()
     local name = "time"
     local f = fs.open(name, "w")
     fs.close(f)
-  
+
     local time = math.floor(fs.lastModified(name) / 1000) + (4 * 3600)
     fs.remove(name)
-  
+
     return os.date("%Y-%m-%d %H:%M:%S", time)
 end
 
